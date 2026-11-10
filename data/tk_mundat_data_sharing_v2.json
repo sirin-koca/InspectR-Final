@@ -1,0 +1,180 @@
+{
+  "pipeline": {
+    "id": "tk_mundat_data_sharing_v2",
+    "name": "Municipal Data Sharing Workflow",
+    "description": "Compliance-enriched design-time blueprint for the MUNDAT Sickleave dataset scenario; IoT is out of scope for this blueprint.",
+    "case_dataset": "Sickleave",
+    "case_dataset_description": "Aggregated and anonymised research dataset assembled from municipal health-services and registry sources.",
+    "excluded_case_datasets": [
+      {
+        "name": "IoT",
+        "reason": "The IoT stormwater sensor dataset is not part of this sensitive personal-data sharing scenario."
+      }
+    ],
+    "nodes": [
+      {
+        "id": "request",
+        "type": "request_intake",
+        "properties": {
+          "request_id": "REQ-2026-MUNDAT",
+          "requester_identity": "academic_research_group",
+          "purpose_specified": "sickleave_trend_analysis",
+          "legal_basis_reference_defined": "explicit_consent_contract"
+        }
+      },
+      {
+        "id": "classify_request",
+        "type": "assessment",
+        "properties": {
+          "personal_data_expected": true,
+          "special_category_data": true,
+          "children_data": false,
+          "purpose_defined": true
+        }
+      },
+      {
+        "id": "dpia_check",
+        "type": "compliance_gate",
+        "properties": {
+          "dpia_required": true,
+          "dpia_checkpoint_defined": true,
+          "risk_assessment_checkpoint_defined": true,
+          "evidence_references_required": true
+        }
+      },
+      {
+        "id": "metadata_catalog",
+        "type": "metadata_catalog",
+        "properties": {
+          "catalog_id": "catalog:trondheim-mundat",
+          "authority": "municipal_data_governance",
+          "purpose": "Authoritative metadata and lineage references for pipeline design-time inspection",
+          "records": [
+            "dataset_identity",
+            "data_owner",
+            "schema",
+            "sensitivity",
+            "processing_activity",
+            "lineage",
+            "provenance"
+          ]
+        }
+      },
+      {
+        "id": "health_services",
+        "type": "data_source",
+        "properties": {
+          "contains_personal_data": true,
+          "contains_special_category_data": true,
+          "case_dataset": "Sickleave",
+          "dataset_role": "contributing_source",
+          "data_owner_defined": "municipal_hr_director",
+          "metadata_catalog_id": "catalog:trondheim-mundat",
+          "catalog_record_id": "dataset:health-services",
+          "schema_fields": [
+            { "name": "employee_id", "type": "string", "is_pii": true, "masking_strategy": "pseudonymise" },
+            { "name": "sick_leave_reasons", "type": "string", "is_pii": true, "masking_strategy": "none" },
+            { "name": "department_code", "type": "string", "is_pii": false, "masking_strategy": "none" }
+          ],
+          "infrastructure_config": {
+            "storage_provider": "local_municipal_server",
+            "encryption_at_rest_configured": true,
+            "retention_policy": {
+              "ttl_days": 30,
+              "retention_purge_configured": true
+            }
+          }
+        }
+      },
+      {
+        "id": "citizen_registry",
+        "type": "data_source",
+        "properties": {
+          "contains_personal_data": true,
+          "contains_special_category_data": false,
+          "case_dataset": "Sickleave",
+          "dataset_role": "supporting_source",
+          "data_owner_defined": "registry_service_owner",
+          "metadata_catalog_id": "catalog:trondheim-mundat",
+          "catalog_record_id": "dataset:citizen-registry",
+          "schema_fields": [
+            { "name": "national_id", "type": "string", "is_pii": true, "masking_strategy": "hash_sha256" },
+            { "name": "birth_year", "type": "integer", "is_pii": false, "masking_strategy": "none" }
+          ],
+          "infrastructure_config": {
+            "storage_provider": "secure_dataspace_bucket",
+            "encryption_at_rest_configured": false,
+            "retention_policy": {
+              "ttl_days": 90,
+              "retention_purge_configured": true
+            }
+          }
+        }
+      },
+      {
+        "id": "extract_data",
+        "type": "data_processing",
+        "properties": {
+          "purpose_limitation_defined": true,
+          "data_minimisation_defined": true,
+          "audit_logging_configured": true
+        }
+      },
+      {
+        "id": "integrate_dataset",
+        "type": "data_integration",
+        "properties": {
+          "lineage_record_defined": true,
+          "provenance_record_defined": true,
+          "schema_record_defined": true,
+          "metadata_catalog_id": "catalog:trondheim-mundat",
+          "lineage_record_id": "lineage:tk-mundat-sickleave-v2",
+          "provenance_record_id": "provenance:tk-mundat-sickleave-v2"
+        }
+      },
+      {
+        "id": "anonymisation",
+        "type": "privacy_control",
+        "properties": {
+          "anonymisation_control_defined": true,
+          "reidentification_risk_checkpoint_defined": true
+        }
+      },
+      {
+        "id": "sharing_assessment",
+        "type": "compliance_gate",
+        "properties": {
+          "purpose_compatibility_declared": true,
+          "contract_checkpoint_defined": true,
+          "recipient_approval_checkpoint_defined": true,
+          "data_sharing_agreement_checkpoint_defined": true
+        }
+      },
+      {
+        "id": "share_dataset",
+        "type": "data_transfer",
+        "properties": {
+          "encryption_in_transit_configured": true,
+          "recipient_approval_declared": true,
+          "audit_trail_configured": true,
+          "sink_destination": "trondheim_open_data_portal"
+        }
+      }
+    ],
+    "connections": [
+      { "from": "request", "to": "classify_request", "flow_type": "control" },
+      { "from": "classify_request", "to": "dpia_check", "flow_type": "control" },
+      { "from": "metadata_catalog", "to": "health_services", "flow_type": "metadata" },
+      { "from": "metadata_catalog", "to": "citizen_registry", "flow_type": "metadata" },
+      { "from": "metadata_catalog", "to": "integrate_dataset", "flow_type": "metadata" },
+      { "from": "dpia_check", "to": "citizen_registry", "flow_type": "authorisation" },
+      { "from": "dpia_check", "to": "health_services", "flow_type": "authorisation" },
+      { "from": "citizen_registry", "to": "extract_data", "flow_type": "data" },
+      { "from": "health_services", "to": "extract_data", "flow_type": "data" },
+      { "from": "extract_data", "to": "integrate_dataset", "flow_type": "data" },
+      { "from": "integrate_dataset", "to": "anonymisation", "flow_type": "data" },
+      { "from": "anonymisation", "to": "sharing_assessment", "flow_type": "data" },
+      { "from": "sharing_assessment", "to": "share_dataset", "flow_type": "approval" }
+    ]
+  }
+}

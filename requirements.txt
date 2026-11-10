@@ -1,0 +1,6 @@
+streamlit
+plotly
+pandas
+rego
+# opa (Open Policy Agent) is an independent .exe system tool rather than a standard Python package.
+
