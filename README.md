@@ -209,7 +209,7 @@ data/                      Raw inLUMEN exports, enriched blueprints, taxonomy
 docs/                      What changed from v1 and why
 docs/wiki/                 Project wiki 
 images/                    Figures and logos
-logg.md                    Log of changes
+logg/                      Log of changes and decisions
 pages/                     overview, method, case, inspection, validation
 policies/tk/               lib.rego, policy.rego, TK-R1..R3.rego, tests/
 src/                       evaluator, catalog, scenarios, ui
