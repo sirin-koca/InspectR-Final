@@ -159,7 +159,7 @@ Every result carries `rule`, `status`, `legal_reference`, `reason`, `evidence`, 
 
 The rules are unreviewed interpretations; legal references are not validated mappings. InspectR reads declared properties only. It does not follow graph paths or checkpoint ordering, resolve catalogue references, or verify assessments, agreements, anonymisation or runtime controls. The raw inLUMEN export uses `kind` instead of `type` and has no compliance facts, so it cannot pass any rule until an adapter exists. Only one use case (TK) is encoded.
 
-## Open questions for SINTEF
+## Open questions 
 
 1. Is three rules acceptable for iteration 1, or should TK-003 (data-sharing agreement) return as TK-R4?
 2. Should a design with special-category data and no compliance gate be FAIL (current) or UNKNOWN?
