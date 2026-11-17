@@ -203,14 +203,21 @@ Run from the repository root; paths are relative.
 
 ```text
 app.py                     Navigation
+archive/                  Old PoC and v1 rule set
+assets/                   Logos, figures, screenshots
+data/                      Raw inLUMEN exports, enriched blueprints, taxonomy
+docs/                      What changed from v1 and why
+images/                    Figures and logos
+logg.md                    Log of changes
+
 pages/                     overview, method, case, inspection, validation
 pages/archive/             Pre-v2 pages (not in navigation)
 src/                       evaluator, catalog, scenarios, ui
 policies/tk/               lib.rego, policy.rego, TK-R1..R3.rego, tests/
 tests/                     pytest integration tests
 data/                      Raw inLUMEN exports, enriched blueprints, taxonomy
-docs/RULESET-V2-CHANGES.md What changed from v1 and why
-docs/wiki/                 Project wiki (Markdown)
+docs/                      What changed from v1 and why
+docs/wiki/                 Project wiki 
 tk-uc/                     MUNDAT source material
 images/                    Figures and logos
 ```
