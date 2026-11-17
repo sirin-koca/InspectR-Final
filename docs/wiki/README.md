@@ -1,8 +1,23 @@
 # InspectR Wiki
 
-Design-time compliance inspection of data-pipeline blueprints with Policy-as-Code (OPA/Rego).
+Design-time compliance assessment for AI & data-pipeline blueprints with Policy-as-Code (OPA/Rego).
 
-This wiki documents the InspectR proof of concept (iteration 1, rule set `tk-v2.0`). It is written from the source files in this repository; where a page summarises a file, the file remains the authority.
+### Research question: 
+How can selected regulatory compliance requirements be operationalised as machine-checkable design-time controls for AI and data-pipeline blueprints?
+
+### Research Methodology:
+Design Science Research (DSR) is rooted in Simon's concept of the sciences of the artificial (Simon, 1969) and was formalised for Information Systems research by [Hevner et al. (2004)](https://doi.org/10.2307/25148625).
+
+### CURRENT RESEARCH DIRECTIONS                  
+1. Identify machine-checkable requirement patterns from the GDPR and the EU AI Act (AIA).
+2. Develop a metadata catalogue for compliance information exposed by pipeline blueprints.
+3. Develop a Domain-Specific Language (DSL) for expressing compliance requirements.
+4. Define an Intermediate Representation (IR) that separates blueprint formats from assessment logic.
+5. Automate translation of DSL rules into Rego policies.
+6. Evaluate traceability, correctness, expressiveness, reusability, and generalisability.
+   
+### About
+This wiki documents the InspectR proof of concept (iteration 1, rule set `tk-v2.0`). It is written from the source files in this repository.
 
 > **Assurance boundary.** InspectR checks what a blueprint *declares* against encoded interpretations of selected requirements. It does not establish legal compliance, completed assessments or approvals, or the runtime behaviour of controls. The rules are author interpretations and have not yet been reviewed by SINTEF, TK or legal experts.
 
