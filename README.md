@@ -11,14 +11,14 @@ Please visit the [Terminology](./terminology.md) and [Glossary](./docs/wiki/08-g
 ```mermaid
 timeline
     title InspectR timeline (2026)
-   17 Aug : Kick-off
-   27 Aug : The proposed artifact accepted
-    22 Sep : First OPA PoC with AI Act rules
-    26-28 Sep : Review, refocus on TK/MUNDAT with GDPR, five TK-* rules
-    Oct : Rule set v1 revision TK-001..TK-006, IR excluded from PoC
-    2 Nov : Rule set tk-v2.0, reduced to three rules, six statuses
-    3 Nov : New app structure, catalogue, Research page
-    13 Nov : DSL (Domain-specific language) development starts
+  17 Aug : Kick-off
+  27 Aug : The proposed artifact accepted
+  22 Sep : First OPA PoC with AI Act rules
+  26-28 Sep : Review, refocus on TK/MUNDAT with GDPR, five TK-* rules
+  Oct : Rule set v1 revision TK-001..TK-006, IR excluded from PoC
+  2 Nov : Rule set tk-v2.0, reduced to three rules, six statuses
+  3 Nov : New app structure, catalogue, Research page
+  16 Nov : DSL (Domain-specific language) development starts
 ```
 
 ### Research question: 
