@@ -6,7 +6,7 @@ InspectR is a research prototype and an MSc thesis artefact built to investigate
 
 
 Please visit the terminology page here. 
-[Terminology](./terminology.md)
+[Terminology](./terminology.md) and [Glossary](./docs/wiki/08-glossary.md)
 
 ### Research question: 
 How can selected regulatory compliance requirements be operationalised as machine-checkable design-time controls for AI and data-pipeline blueprints?
