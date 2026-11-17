@@ -1,12 +1,15 @@
 # InspectR
 
-Design-time compliance assessment for AI & data-pipeline blueprints with Policy-as-Code (OPA/Rego).
+InspectR is a research prototype and an MSc thesis artefact built to investigate design-time compliance assessment for AI & data-pipeline blueprints using a Policy-as-Code framework. InspectR is developed in collaboration with SINTEF within the Horizon Europe DataPACT project (datapact.eu) and explores compliance-by-design architectures. 
+
+<img width="130" alt="image" src="https://github.com/user-attachments/assets/f8a95613-172e-4983-add4-868569c8a0d1" />
+
 
 ### Research question: 
 How can selected regulatory compliance requirements be operationalised as machine-checkable design-time controls for AI and data-pipeline blueprints?
 
 ### Research Methodology:
-Design Science Research (DSR) is rooted in Simon's concept of the sciences of the artificial (Simon, 1969) and was formalised for Information Systems research by [Hevner et al. (2004)](https://doi.org/10.2307/25148625).
+This thesis employs Design Science Research (DSR), a research paradigm grounded in Simon's concept of the sciences of the artificial (Simon, 1969) and formalised for Information Systems research by [Hevner et al. (2004)](https://doi.org/10.2307/25148625).
 
 > **Assurance boundary.** InspectR checks what a blueprint *declares* against encoded interpretations of selected requirements. It does not establish legal compliance, completed assessments or approvals, or the runtime behaviour of controls. The rules are author interpretations and have not yet been reviewed by SINTEF, TK or legal experts.
 
@@ -57,17 +60,7 @@ ERROR is outside the table: InspectR failed, not the blueprint. An undetermined 
 
 PASS is not a compliance certificate: it means the design declares the control.
 
-## Rule set tk-v2.0
-
-| Rule | TK requirement | Trigger | Control | Legal reference |
-|---|---|---|---|---|
-| TK-R1 · DPIA and risk-assessment checkpoint | DPIA / risk assessment | A `data_source` declares `contains_special_category_data: true`. | One `compliance_gate` declares `dpia_checkpoint_defined` and `risk_assessment_checkpoint_defined` as `true`. | GDPR Art. 35(1), 35(3)(b), Art. 9 |
-| TK-R2 · Lineage record for integrated data | Traceability | A `data_integration` node exists. | Every integration node declares `lineage_record_defined: true`. | GDPR Art. 5(2), Art. 30 |
-| TK-R3 · Purpose compatibility before sharing | Lawfulness | A `data_transfer` node exists and a source declares `contains_personal_data: true`. | Gates carrying `purpose_compatibility_declared` declare `true`. Best outcome is HUMAN, never PASS. | GDPR Art. 5(1)(b), Art. 6(4) |
-
-TK-R1 merges v1 rules TK-001 and TK-002; TK-R2 replaces TK-004; TK-R3 replaces TK-005. TK-003 and TK-006 were dropped. Each rule's decision table is in the header of its Rego file. Reasons and fixes: [`docs/RULESET-V2-CHANGES.md`](docs/RULESET-V2-CHANGES.md).
-
-## Case: TK / MUNDAT
+## Use Case: TK / MUNDAT
 
 The **Sickleave** scenario (DataPACT D5.1 §3.7) assembles a research dataset from health-services and citizen-registry sources, integrates and anonymises it, and shares it with an external recipient. It involves special-category health data, integration of sources, and sharing for a new purpose.
 
@@ -77,6 +70,16 @@ The **Sickleave** scenario (DataPACT D5.1 §3.7) assembles a research dataset fr
 | `data/tk_mundat_data_sharing_v2.json` | Enriched blueprint: 11 typed nodes, 13 connections, compliance facts added manually. | Evaluation input. |
 
 The difference between the two is a research finding (RQ1): it measures the gap between what pipeline tooling exports and what inspection needs. Source names, schemas and configuration values in V2 are illustrative modelling assumptions, not confirmed municipal system details.
+
+## Rule set tk-v2.0
+
+| Rule | TK requirement | Trigger | Control | Legal reference |
+|---|---|---|---|---|
+| TK-R1 · DPIA and risk-assessment checkpoint | DPIA / risk assessment | A `data_source` declares `contains_special_category_data: true`. | One `compliance_gate` declares `dpia_checkpoint_defined` and `risk_assessment_checkpoint_defined` as `true`. | GDPR Art. 35(1), 35(3)(b), Art. 9 |
+| TK-R2 · Lineage record for integrated data | Traceability | A `data_integration` node exists. | Every integration node declares `lineage_record_defined: true`. | GDPR Art. 5(2), Art. 30 |
+| TK-R3 · Purpose compatibility before sharing | Lawfulness | A `data_transfer` node exists and a source declares `contains_personal_data: true`. | Gates carrying `purpose_compatibility_declared` declare `true`. Best outcome is HUMAN, never PASS. | GDPR Art. 5(1)(b), Art. 6(4) |
+
+TK-R1 merges v1 rules TK-001 and TK-002; TK-R2 replaces TK-004; TK-R3 replaces TK-005. TK-003 and TK-006 were dropped. Each rule's decision table is in the header of its Rego file. Reasons and fixes: [`docs/RULESET-V2-CHANGES.md`](docs/RULESET-V2-CHANGES.md).
 
 ## Architecture
 
