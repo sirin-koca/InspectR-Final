@@ -1,5 +1,16 @@
-# InspectR 
-### Current version: Proof-of-Concept (PoC)
+# InspectR PoC
+
+Initial proof-of-concept repository: InspectR-PoC
+
+This work was later migrated into InspectR-Final on DATE: 10.November.2026.
+
+Major additions:
+
+- Start of a new repository for the final thesis implementation with Intermediate Representation (IR)
+- Research on DSL development and rule operationalisation
+- Documentation
+- Project Wiki
+- Evaluation setup
 
 ## Work-in-progress
 
