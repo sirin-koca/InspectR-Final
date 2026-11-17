@@ -1,4 +1,4 @@
-# Decisions Log (ADR)
+# Decisions Log
 
 This document records significant technical, architectural, and research decisions made during the development of InspectR. The purpose is to provide traceability, rationale, and justification for design choices throughout the MSc project.
 
