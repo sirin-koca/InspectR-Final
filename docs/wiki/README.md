@@ -37,9 +37,9 @@ This wiki documents the InspectR proof of concept (iteration 1, rule set `tk-v2.
 
 ## What InspectR is
 
-InspectR is an MSc thesis artefact (Design Science Research), Department of Informatics, University of Oslo, built in collaboration with SINTEF within DataPACT. The case is MUNDAT at Trondheim Kommune (TK).
+InspectR is an MSc Thesis artefact, a research prototype, by the Department of Informatics at the University of Oslo, built in collaboration with SINTEF within the EU DataPACT project. The artefact implements the MUNDAT (Trondheim Kommune - TK) use case. 
 
-Compliance requirements for data pipelines, for example GDPR obligations in the TK documents, are written in natural language and checked manually, late, and without traceability to the pipeline design. InspectR investigates how selected requirements can be made machine-checkable against a pipeline **blueprint** before the pipeline is built:
+Compliance requirements for data pipelines, such as GDPR obligations in the TK case, are written in natural language, checked manually, and often late, without traceability to the pipeline design. InspectR investigates how selected requirements can be made machine-checkable against a pipeline **blueprint** before the pipeline is sent to production or deployment:
 
 1. A requirement is scoped as a rule: **IF trigger THEN control**.
 2. The rule reads typed facts from a JSON blueprint. Each fact is `true`, `false` or **undetermined** (absent, `null`, or not a boolean).
@@ -48,7 +48,7 @@ Compliance requirements for data pipelines, for example GDPR obligations in the 
 
 The six statuses are `PASS`, `FAIL`, `UNKNOWN`, `HUMAN`, `NOT_APPLICABLE` and `ERROR`. An undetermined fact never produces `PASS`, and `PASS` means "the design declares the control", not "the pipeline is compliant". See [Policy engine → status model](03-policy-engine.md#status-model).
 
-The project's own definition (from `PoC.md`): InspectR is a proof-of-concept architecture for design-time AI and data-pipeline compliance tooling. The PoC deliberately omits an Intermediate Representation (IR) and evaluates the blueprint directly with OPA/Rego.
+Current implementation: InspectR is a proof-of-concept architecture for design-time AI and data-pipeline compliance tooling. The PoC deliberately omits an Intermediate Representation (IR) and evaluates the blueprint directly with OPA/Rego.
 
 ### Research questions
 
@@ -60,7 +60,7 @@ The project's own definition (from `PoC.md`): InspectR is a proof-of-concept arc
 | RQ2 · Architecture | Which architectural design supports reuse across use cases and blueprint formats (intermediate representation with adapters, policy packs, explicit result semantics)? |
 | RQ3 · Evaluation | How reliable, explainable and efficient are InspectR's findings compared with manual expert review, across DataPACT use cases? |
 
-## Getting started (summary)
+## Getting started 
 
 Full instructions: [Getting started](01-getting-started.md).
 
@@ -131,12 +131,15 @@ Reconstructed from the git history, `Logg.md`, `archive-files.txt` and `docs/RUL
 
 ```mermaid
 timeline
-    title InspectR PoC history (2026)
+    title InspectR timeline (2026)
+   17 Aug : Kick-off
+   27 Aug : The proposed artifact accepted
     22 Sep : First OPA PoC with AI Act rules
-    26-28 Sep : Review, refocus on TK/MUNDAT, five TK-* rules
-    Oct : Rule set v1 TK-001..TK-006, IR excluded from PoC
-    2 Nov : Rule set tk-v2.0, three rules, six statuses
+    26-28 Sep : Review, refocus on TK/MUNDAT with GDPR, five TK-* rules
+    Oct : Rule set v1 revision TK-001..TK-006, IR excluded from PoC
+    2 Nov : Rule set tk-v2.0, reduced to three rules, six statuses
     3 Nov : New app structure, catalogue, Research page
+    13 Nov : DSL (Domain-specific language) development starts
 ```
 
 ## Status and limitations
