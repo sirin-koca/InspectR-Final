@@ -5,8 +5,7 @@ InspectR is a research prototype and an MSc thesis artefact built to investigate
 <img width="130" alt="image" src="https://github.com/user-attachments/assets/f8a95613-172e-4983-add4-868569c8a0d1" />
 
 
-Please visit the terminology page here. 
-[Terminology](./terminology.md) and [Glossary](./docs/wiki/08-glossary.md)
+Please visit the [Terminology](./terminology.md) and [Glossary](./docs/wiki/08-glossary.md) pages for terms and concepts.
 
 ### Timeline
 ```mermaid
