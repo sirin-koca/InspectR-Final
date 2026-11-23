@@ -1,4 +1,53 @@
-# InspectR
+# The problem:
+
+Imagine you're building a house. Would you rather find out about a fire-code violation after you've moved in, or while the plans are still on paper?
+
+Companies face this problem with data. Hospitals, cities and researchers build "data pipelines". These are automated routes that collect data, clean it, combine it and share it. Laws like Europe's GDPR set strict rules for this, especially for sensitive data such as health records.
+
+Today those rules are written in long legal text. People check them by hand, and usually late, when the system is nearly finished. Fixing a problem then is slow and expensive, and nobody can easily show why a decision was made.
+
+# The idea
+
+My thesis asks one question. Can we turn legal requirements into checks that a computer runs on the design of a data system, before anything is built?
+
+I call my prototype InspectR. Think of it as a building inspector who reads the blueprints instead of walking through the finished house.
+
+## How it works
+
+First, every data system gets a blueprint, a structured description of what it does. Second, I translated a few legal requirements into simple "if this, then that" rules. For example: if the system uses health data, there must be a planned privacy risk assessment.
+
+Then the computer compares the blueprint with the rules. Each rule gives one of a few clear answers:
+
+- Pass: the design says the safeguard is there.
+- Fail: the rule applies, but the safeguard is missing.
+- Unknown: the blueprint doesn't say, so we can't tell.
+- Human: the computer has checked everything it can, and a lawyer must make the final call.
+- Not applicable: the rule doesn't apply here.
+
+The most important rule is perhaps this one: missing information never counts as a pass. If the blueprint is silent, the answer is "unknown". It is never "looks fine".
+
+## The test case: MUNDAT / TK
+
+I tested this on a realistic scenario from a European research project called DataPACT, which I'm working on with SINTEF. It's a "sick leave" example. Health data and citizen records are combined, anonymised, and shared with an outside researcher. That scenario touches sensitive data, merged sources and a new purpose for the data, so it's a good stress test.
+
+I ran seven variations. In each one I changed a single detail, for example removing the privacy-assessment step. In all 21 results, the tool gave the answer I expected. Along the way I also found and fixed bugs in my first version. In one of them, a missing detail produced a false "pass".
+
+### An early finding
+
+The raw export from the pipeline tool was too bare for the inspector. It said what the steps were, but nothing about privacy. I had to add that information by hand. That gap is a result in itself. It shows how far today's tools are from being "compliance-ready".
+
+### Limitations
+
+The tool does not prove a system is legal. It checks what the design declares, not what happens when the system runs. The rules are my own interpretation and still need review by legal and domain experts. So far I've only covered one use case.
+
+If this works, compliance stops being a last-minute scramble. It becomes a built-in step in design. Problems get caught early, every decision comes with a reason, and the lawyers' time goes to the questions that need human judgement.
+
+Right now we check privacy the way we check a house, after it's built. I'm working on checking it while it's still a drawing.
+
+With Rego, we describe the conditions for passing or failing a policy, and OPA searches a JSON (or YAML) input document for data that matches those pass/fail conditions.
+
+
+# InspectR - the artifact
 
 InspectR is a research prototype and an MSc thesis artefact built to investigate design-time compliance assessment for AI & data-pipeline blueprints using a Policy-as-Code framework. InspectR is developed in collaboration with SINTEF within the Horizon Europe DataPACT project (datapact.eu) and explores compliance-by-design architectures. 
 
