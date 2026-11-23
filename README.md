@@ -22,7 +22,8 @@ timeline
   20 Nov - 10 Dec : EXAM
   10 Dec - 20 Dec: ...
   20 Dec - 01 Jan: Xmas
-  Jan : Thesis writing 
+ Thesis writing :
+  Jan :
   Feb :
   Mar :
   Apr :
