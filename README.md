@@ -19,6 +19,9 @@ timeline
   2 Nov : Rule set tk-v2.0, reduced to three rules, six statuses
   3 Nov : New app structure, catalogue, Research page
   16-23 Nov : Exploring DSL (Domain-specific language) development 
+  20 Nov - 10 Dec : Exam prep
+
+  June 27: Thesis Defence 
   
 ```
 
