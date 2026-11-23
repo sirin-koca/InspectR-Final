@@ -18,7 +18,8 @@ timeline
   Oct : Rule set v1 revision TK-001..TK-006, IR excluded from PoC
   2 Nov : Rule set tk-v2.0, reduced to three rules, six statuses
   3 Nov : New app structure, catalogue, Research page
-  16 Nov : DSL (Domain-specific language) development starts
+  16-23 Nov : Exploring DSL (Domain-specific language) development 
+  
 ```
 
 ### Research question: 
