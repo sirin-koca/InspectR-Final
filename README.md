@@ -4,27 +4,32 @@ Imagine you're building a house. Would you rather find out about a fire-code vio
 
 Companies face this problem with data. Governments, hospitals, cities, companies and researchers build "data pipelines". These pipelines are automated routes that collect, clean, combine, move and share data. Laws like Europe's GDPR set strict rules for this, especially for sensitive data such as health records.
 
-Today those rules are written in long legal text. People check them by hand, and usually late, when the system is nearly finished. Fixing a problem then is slow and expensive, and nobody can easily show why a decision was made.
+Today those rules are written in long legal text, kept in PDF files. Humans read, interpret and check them by hand, and usually late in the process, when the system is running. Fixing a problem at runtime is risky, costly and slow. Moreover, nobody can easily show why a decision was made and who is accountable.
 
 # The idea
 
-My thesis asks one question. Can we turn legal requirements into checks that a computer runs on the design of a data system, before anything is built?
+My thesis asks one question. Can we turn legal requirements into machine-checkable rules that a computer runs on the design of a data system, before anything is built?
 
-I call my prototype InspectR. Think of it as a building inspector who reads the blueprints instead of walking through the finished house.
+I call my prototype InspectR - a policy engine. Just like an architect who checks the blueprint instead of walking through the finished building.
 
 ## How it works
 
-First, every data system gets a blueprint, a structured description of what it does. Second, I translated a few legal requirements into simple "if this, then that" rules. For example: if the system uses health data, there must be a planned privacy risk assessment.
+First, every data system gets a blueprint, a structured description of what it does. 
 
-Then the computer compares the blueprint with the rules. Each rule gives one of a few clear answers:
+Second, I translated a few legal requirements into simple "if this, then that" rules. For example: if the system uses health data, there must be a planned privacy risk assessment (DPIA, ref. GDPR).
+
+Then the computer compares the blueprint with the rules. 
+
+Each rule gives one of a few clear answers:
 
 - Pass: the design says the safeguard is there.
 - Fail: the rule applies, but the safeguard is missing.
 - Unknown: the blueprint doesn't say, so we can't tell.
 - Human: the computer has checked everything it can, and a lawyer must make the final call.
 - Not applicable: the rule doesn't apply here.
+- Error: A technical issue.
 
-The most important rule is perhaps this one: missing information never counts as a pass. If the blueprint is silent, the answer is "unknown". It is never "looks fine".
+The most important rule is perhaps this one: missing information never counts as a pass. If the blueprint does not say anything, the verdict is "unknown". 
 
 ## The test case: MUNDAT / TK
 
