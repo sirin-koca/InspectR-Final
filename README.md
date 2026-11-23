@@ -2,7 +2,7 @@
 
 Imagine you're building a house. Would you rather find out about a fire-code violation after you've moved in, or while the plans are still on paper?
 
-Companies face this problem with data. Governments, hospitals, cities, companies and researchers build "data pipelines". These are automated routes that collect data, clean it, combine it and share it. Laws like Europe's GDPR set strict rules for this, especially for sensitive data such as health records.
+Companies face this problem with data. Governments, hospitals, cities, companies and researchers build "data pipelines". These pipelines are automated routes that collect, clean, combine, move and share data. Laws like Europe's GDPR set strict rules for this, especially for sensitive data such as health records.
 
 Today those rules are written in long legal text. People check them by hand, and usually late, when the system is nearly finished. Fixing a problem then is slow and expensive, and nobody can easily show why a decision was made.
 
